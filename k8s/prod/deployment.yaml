@@ -21,7 +21,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: web
-          image: ghcr.io/uberswe/awesomehytale.com:main-latest
+          image: ghcr.io/uberswe/awesomehytale.com:main-1239b51
           ports:
             - containerPort: 8080
           envFrom:
