@@ -1,0 +1,28 @@
+{{define "sidebar"}}
+<aside class="sidebar">
+    <nav class="sidebar-nav">
+        <h2 class="sidebar-title">Categories</h2>
+        <ul class="category-list">
+            {{range .SiteData.Categories}}
+            <li class="category-item">
+                <a href="/category/{{.Slug}}" class="category-link">
+                    <span class="category-name">{{.Name}}</span>
+                    <span class="category-count">{{len .Resources}}</span>
+                </a>
+            </li>
+            {{end}}
+        </ul>
+    </nav>
+    
+    <div class="sidebar-stats">
+        <div class="stat">
+            <span class="stat-value">{{.SiteData.TotalResources}}</span>
+            <span class="stat-label">Resources</span>
+        </div>
+        <div class="stat">
+            <span class="stat-value">{{len .SiteData.Categories}}</span>
+            <span class="stat-label">Categories</span>
+        </div>
+    </div>
+</aside>
+{{end}}

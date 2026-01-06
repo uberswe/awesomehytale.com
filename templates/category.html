@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="category-page">
+    <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <span>{{.Category.Name}}</span>
+    </nav>
+    
+    <header class="page-header">
+        <h1>{{.Category.Name}}</h1>
+        {{if .Category.Description}}
+        <p class="category-description">{{.Category.Description}}</p>
+        {{end}}
+        <span class="resource-count">{{len .Category.Resources}} resources</span>
+    </header>
+    
+    <div class="resources-list">
+        {{range .Category.Resources}}
+        <article class="resource-card">
+            <div class="resource-info">
+                <h2><a href="/resource/{{.CategorySlug}}/{{.Slug}}">{{.Name}}</a></h2>
+                {{if .Description}}
+                <p class="resource-desc">{{truncate .Description 200}}</p>
+                {{end}}
+                <div class="resource-meta">
+                    <span class="meta-item">{{.Platform}}</span>
+                    <span class="meta-item">{{.Price}}</span>
+                </div>
+            </div>
+            <a href="/go/{{.CategorySlug}}/{{.Slug}}" class="visit-btn">Visit &rarr;</a>
+        </article>
+        {{end}}
+    </div>
+</div>
+{{end}}

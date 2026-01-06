@@ -1,0 +1,97 @@
+{{define "jsonld"}}
+{{if eq .Meta.PageType "home"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Awesome Hytale",
+    "url": "{{.BaseURL}}",
+    "description": "{{.Meta.Description}}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{.BaseURL}}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+{{else if eq .Meta.PageType "category"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{.Category.Name}} - Awesome Hytale",
+    "description": "{{.Meta.Description}}",
+    "url": "{{.Meta.CanonicalURL}}",
+    "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": {{len .Category.Resources}}
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{.BaseURL}}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{.Category.Name}}",
+                "item": "{{.Meta.CanonicalURL}}"
+            }
+        ]
+    }
+}
+</script>
+{{else if eq .Meta.PageType "resource"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "{{.Resource.Name}}",
+    "description": "{{.Resource.Description}}",
+    "url": "{{.Resource.URL}}",
+    "applicationCategory": "{{.Resource.CategoryName}}",
+    "operatingSystem": "{{.Resource.Platform}}",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{.BaseURL}}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{.Resource.CategoryName}}",
+                "item": "{{.BaseURL}}/category/{{.Resource.CategorySlug}}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{.Resource.Name}}",
+                "item": "{{.Meta.CanonicalURL}}"
+            }
+        ]
+    }
+}
+</script>
+{{else if eq .Meta.PageType "search"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SearchResultsPage",
+    "name": "Search - Awesome Hytale"
+}
+</script>
+{{end}}
+{{end}}

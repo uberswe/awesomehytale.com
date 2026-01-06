@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: web-prod
+  namespace: awesomehytale-com-prod
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`awesomehytale.com`) || Host(`www.awesomehytale.com`)
+      services:
+        - name: web
+          port: 80
+  tls:
+    secretName: awesomehytale-com-prod-tls

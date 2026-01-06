@@ -1,0 +1,45 @@
+{{define "content"}}
+<div class="home">
+    <section class="hero">
+        <h1>The Complete Hytale Community Resource Directory</h1>
+        <p>Discover {{.SiteData.TotalResources}} resources across {{len .SiteData.Categories}} categories for Hytale players, modders, server owners, and content creators.</p>
+    </section>
+    
+    {{if .SiteData.NewsItems}}
+    <section class="news-section">
+        <h2>Latest News</h2>
+        <div class="news-grid">
+            {{range .SiteData.NewsItems}}
+            <article class="news-card">
+                <span class="news-date">{{.Date.Format "Jan 2, 2006"}}</span>
+                <h3 class="news-title">{{.Title}}</h3>
+                <p class="news-excerpt">{{truncate .Excerpt 150}}</p>
+                <a href="{{.URL}}" target="_blank" rel="noopener" class="news-link">Read more &rarr;</a>
+            </article>
+            {{end}}
+        </div>
+    </section>
+    {{end}}
+    
+    <section class="categories-section">
+        <h2>Browse Categories</h2>
+        <div class="category-grid">
+            {{range .SiteData.Categories}}
+            <a href="/category/{{.Slug}}" class="category-card">
+                <h3>{{.Name}}</h3>
+                <span class="resource-count">{{len .Resources}} resources</span>
+                {{if .Description}}
+                <p class="category-desc">{{truncate .Description 100}}</p>
+                {{end}}
+            </a>
+            {{end}}
+        </div>
+    </section>
+    
+    <section class="contribute-section">
+        <h2>Contribute</h2>
+        <p>Know a Hytale resource that's missing? Help grow this directory by submitting a pull request on GitHub.</p>
+        <a href="https://github.com/uberswe/awesomehytale.com" target="_blank" rel="noopener" class="btn-primary">Contribute on GitHub</a>
+    </section>
+</div>
+{{end}}

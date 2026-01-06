@@ -1,0 +1,56 @@
+{{define "content"}}
+<div class="resource-page">
+    <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; 
+        <a href="/category/{{.Resource.CategorySlug}}">{{.Resource.CategoryName}}</a> &rsaquo; 
+        <span>{{.Resource.Name}}</span>
+    </nav>
+    
+    <header class="page-header">
+        <h1>{{.Resource.Name}}</h1>
+        {{if .Resource.Description}}
+        <p class="resource-description">{{.Resource.Description}}</p>
+        {{end}}
+    </header>
+    
+    <div class="resource-details">
+        <table class="details-table">
+            <tr>
+                <th>Platform</th>
+                <td>{{.Resource.Platform}}</td>
+            </tr>
+            <tr>
+                <th>Audience</th>
+                <td>{{.Resource.Audience}}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{.Resource.Price}}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td><a href="/category/{{.Resource.CategorySlug}}">{{.Resource.CategoryName}}</a></td>
+            </tr>
+        </table>
+        
+        <div class="resource-links">
+            <h2>Links</h2>
+            {{if .Resource.URLs}}
+            {{range $i, $link := .Resource.URLs}}
+            <a href="/go/{{$.Resource.CategorySlug}}/{{$.Resource.Slug}}/{{$i}}" class="resource-link">
+                {{if $link.Label}}{{$link.Label}}{{else}}Visit Website{{end}} &rarr;
+            </a>
+            {{end}}
+            {{else}}
+            <a href="/go/{{.Resource.CategorySlug}}/{{.Resource.Slug}}" class="resource-link">
+                Visit Website &rarr;
+            </a>
+            {{end}}
+        </div>
+    </div>
+    
+    <div class="back-link">
+        <a href="/category/{{.Resource.CategorySlug}}">&larr; Back to {{.Resource.CategoryName}}</a>
+    </div>
+</div>
+{{end}}

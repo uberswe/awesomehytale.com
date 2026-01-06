@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+  namespace: awesomehytale-com-prod
+data:
+  PORT: "8080"
+  ENVIRONMENT: "production"
+  BASE_URL: "https://www.awesomehytale.com"

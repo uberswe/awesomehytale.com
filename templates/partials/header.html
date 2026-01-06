@@ -1,0 +1,18 @@
+{{define "header"}}
+<header class="header">
+    <div class="header-content">
+        <a href="/" class="logo">
+            <span class="logo-text">Awesome<span class="logo-accent">Hytale</span></span>
+        </a>
+        
+        <form action="/search" method="GET" class="search-form">
+            <input type="text" name="q" placeholder="Search resources..." class="search-input" value="{{if .Query}}{{.Query}}{{end}}">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        
+        <a href="https://github.com/uberswe/awesomehytale.com" target="_blank" rel="noopener" class="contribute-btn">
+            + Add Resource
+        </a>
+    </div>
+</header>
+{{end}}
