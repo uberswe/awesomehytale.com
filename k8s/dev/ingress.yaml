@@ -10,7 +10,7 @@ spec:
   routes:
     # Route for Authentik outpost callbacks - required for auth flow
     - kind: Rule
-      match: Host(`awesomehytale-com.9m.se`) && PathPrefix(`/outpost.goauthentik.io/`)
+      match: Host(`dev.awesomehytale.com`) && PathPrefix(`/outpost.goauthentik.io/`)
       services:
         - kind: Service
           name: authentik-server
@@ -18,7 +18,7 @@ spec:
           port: 80
     # Main route with forwardAuth
     - kind: Rule
-      match: Host(`awesomehytale-com.9m.se`)
+      match: Host(`dev.awesomehytale.com`)
       services:
         - name: web
           port: 80
@@ -37,7 +37,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`awesomehytale-com.9m.se`)
+      match: Host(`dev.awesomehytale.com`)
       services:
         - name: web
           port: 80

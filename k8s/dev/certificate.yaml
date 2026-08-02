@@ -9,4 +9,4 @@ spec:
     name: letsencrypt-production
     kind: ClusterIssuer
   dnsNames:
-    - awesomehytale-com.9m.se
+    - dev.awesomehytale.com
